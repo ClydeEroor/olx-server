@@ -1,7 +1,7 @@
 import Post from '../models/Post.js'
 import User from "../models/User.js"
 import path, {dirname} from 'path'
-import { fileURLToPath } from 'url'
+import {fileURLToPath} from 'url'
 
 
 export const createPost = async (req, res) => {
@@ -26,7 +26,7 @@ export const createPost = async (req, res) => {
 
             await newPostWithImage.save()
             await User.findByIdAndUpdate(req.userId, {
-                $push: { posts: newPostWithImage },
+                $push: {posts: newPostWithImage},
             })
 
             return res.json({newPostWithImage})
@@ -42,7 +42,7 @@ export const createPost = async (req, res) => {
 
         await newPostWithoutImage.save()
         await User.findByIdAndUpdate(req.userId, {
-            $push: { posts: newPostWithoutImage },
+            $push: {posts: newPostWithoutImage},
         })
         res.json(newPostWithoutImage)
 
@@ -51,4 +51,22 @@ export const createPost = async (req, res) => {
         res.json({message: 'Что-то пошло не так!'})
     }
 }
-//2:53:59
+
+// Get all Posts
+export const getAll = async (req, res) => {
+    try {
+
+        const posts = await Post.find().sort('-createdAt')
+        const popularPosts = await Post.find().limit(20).sort('-views')
+
+        if (!posts) {
+            return res.json({message: 'Постов нет'})
+        }
+
+
+        res.json({posts, popularPosts})
+    } catch (error) {
+        res.json({message: 'Что-то пошло не так!!!'})
+        console.log(error)
+    }
+}
