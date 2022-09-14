@@ -70,3 +70,17 @@ export const getAll = async (req, res) => {
         console.log(error)
     }
 }
+
+// Get Post By Id
+export const getById = async (req, res) => {
+    try {
+        const post = await Post.findByIdAndUpdate(req.params.id, {
+            $inc: {views: 1}
+        })
+
+        res.json(post)
+    } catch (error) {
+        res.json({message: 'Что-то пошло не так!!!'})
+        console.log(error)
+    }
+}
