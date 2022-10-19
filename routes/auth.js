@@ -10,7 +10,7 @@ router.post('/register', register)
 // Login
 router.post('/login', login)
 
-// Get mez
+// Get meaz
 router.get('/me', checkAuth, getME)
 
 export default router

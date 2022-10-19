@@ -16,9 +16,9 @@ dotenv.config()
 //add one file to connect with DB
 
 const PORT = process.env.PORT || 3001
-const DB_USER = process.env.DB_USER
-const DB_PASSWORD = process.env.DB_PASSWORD
-const DB_NAME = process.env.DB_NAME
+// const DB_USER = process.env.DB_USER
+// const DB_PASSWORD = process.env.DB_PASSWORD
+// const DB_NAME = process.env.DB_NAME
 
 // Middleware = некая функция которая дополняет или расширяет настройки нашего Експресса
 
@@ -37,8 +37,10 @@ app.use('/api/comments', commentRoute)
 async function start () {
     try {
         await mongoose.connect (
-            `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.rytz5u9.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`)
+            `mongodb+srv://clyde:lp123321@cluster0.tdecpl3.mongodb.net/test
 
+`)
+        // mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.rytz5u9.mongodb.net/${DB_NAME}?retryWrites=true&w=majority
             app.listen(PORT, () => console.log(`Server started on port ${PORT} `))
 
 

@@ -148,7 +148,6 @@ export const updatePost = async (req, res) => {
     }
 }
 
-//Get Post Comments
 // Get Post Comments
 export const getPostComments = async (req, res) => {
     try {
@@ -160,7 +159,7 @@ export const getPostComments = async (req, res) => {
         )
         res.json(list)
     } catch (error) {
-        res.json({ message: 'Что-то пошло не так.' })
+        res.json({ message: error })
     }
 }
 
